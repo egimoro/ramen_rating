@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<a href="{% url 'accounts:logout' %}">Log out</a>
+<br><br>
+
+<button type="button" class="btn btn-primary" data-toggle="modal"
+    data-target="#myModal">Add a rating</button>
+<br>
+    <button id="getRating">Get rating</button>
+<br>
+<table class="table" id="ramenTable">
+    <thead>
+        <tr>
+            <th>Review #</th>
+            <th>Brand</th>
+            <th>Variety</th>
+            <th>Style</th>
+            <th>Country</th>
+            <th>Stars</th>
+            <th>Date Time Review</th>
+            <th>Top Ten</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+
+</table>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Ramen Form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <form action="">
+                    <div class="form-group">
+                        {% csrf_token %}
+                        {% for field in form %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                        {% if field.help_text %}
+                        <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="btnAdd" onclick="Add()" >Add</button>
+          <button type="button" class="btn btn-warning" id="btnUpdate" onclick="Update()"
+          style="display: none;" >Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
