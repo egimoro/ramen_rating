@@ -128,8 +128,8 @@ AUTH_USER_MODEL = 'accounts.RamenUser'
 STATIC_URL = '/static/'
 
 
-LOGIN_REDIRECT_URL = 'rating:ramen'
-LOGOUT_REDIRECT_URL = 'home'  
+LOGIN_REDIRECT_URL = 'accounts:home'
+LOGOUT_REDIRECT_URL = 'accounts:home'  
 
 
 
